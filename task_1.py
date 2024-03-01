@@ -40,20 +40,28 @@ def merge_sort(arr):
             j += 1
             k += 1
 
-def measure_time(func, arr):
+def measure_sorting_time(func, size):
+    data = [random.randint(0, 10000) for _ in range(size)]
     start_time = timeit.default_timer()
-    func(arr.copy())
+    func(data)
     return timeit.default_timer() - start_time
 
-# Генерація випадкового масиву даних
-array_size = 10000
-data = [random.randint(0, 10000) for _ in range(array_size)]
+sizes = [100, 1000, 10000, 15000, 30000]  # Розміри наборів даних для тестування
 
-# Вимірювання та вивід часу виконання
-insertion_sort_time = measure_time(insertion_sort, data)
-merge_sort_time = measure_time(merge_sort, data)
-timsort_time = measure_time(sorted, data)
+# Зберігання результатів тестування
+results = {"Insertion Sort": [], "Merge Sort": [], "Timsort": []}
 
-print(f"Insertion Sort: {insertion_sort_time} seconds")
-print(f"Merge Sort: {merge_sort_time} seconds")
-print(f"Timsort: {timsort_time} seconds")
+for size in sizes:
+    ins_sort_time = measure_sorting_time(insertion_sort, size)
+    merge_sort_time = measure_sorting_time(merge_sort, size)
+    timsort_time = measure_sorting_time(sorted, size)
+    
+    results["Insertion Sort"].append((size, ins_sort_time))
+    results["Merge Sort"].append((size, merge_sort_time))
+    results["Timsort"].append((size, timsort_time))
+
+# Виведення результатів
+for algorithm, timings in results.items():
+    print(f"{algorithm}:")
+    for size, time in timings:
+        print(f"Size {size}: {time} seconds")
