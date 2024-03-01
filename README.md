@@ -1,8 +1,8 @@
 # Результати тестування
 
-Insertion Sort: 3.110349400085397 seconds
-Merge Sort: 0.02861010003834963 seconds
-Timsort: 0.0015807000454515219 seconds
+* Insertion Sort: 3.110349400085397 seconds
+* Merge Sort: 0.02861010003834963 seconds
+* Timsort: 0.0015807000454515219 seconds
 
 # Висновки
 
